@@ -1,3 +1,5 @@
+import timeit
+
 """
 PROBLEM DESCRIPTION:
 
@@ -75,5 +77,17 @@ def factorial_memo(n, memo={}):
         return memo[n]
     if n == 1 or n == 0:
         return 1
+    if n == 2:
+        return 2
     memo[n] = n*factorial_memo(n-1, memo)
     return memo[n]
+
+
+print({
+    "factorial_of_50": factorial(50),
+    "factorial_time_taken": timeit.timeit(lambda: factorial(50), number=1000),
+    "factorial_of_50_memo": factorial_memo(50),
+    "factorial_memo_time_taken": timeit.timeit(
+        lambda: factorial_memo(50), number=1000
+    ),
+})
